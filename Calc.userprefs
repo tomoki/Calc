@@ -1,0 +1,23 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Calc/Node/Node.cs">
+    <Files>
+      <File FileName="Calc/Main.cs" Line="1" Column="1" />
+      <File FileName="Calc/Lexer.cs" Line="1" Column="1" />
+      <File FileName="Calc/Parser.cs" Line="35" Column="28" />
+      <File FileName="Calc/TokenType.cs" Line="1" Column="1" />
+      <File FileName="Calc/IO/LexerReader.cs" Line="1" Column="1" />
+      <File FileName="Calc/Node/Node.cs" Line="8" Column="4" />
+      <File FileName="Calc/Node/PlusNode.cs" Line="3" Column="20" />
+      <File FileName="Calc/Node/MinusNode.cs" Line="1" Column="1" />
+      <File FileName="Calc/Node/MultiplyNode.cs" Line="1" Column="1" />
+      <File FileName="Calc/Node/DivideNode.cs" Line="1" Column="1" />
+      <File FileName="Calc/Node/NumberNode.cs" Line="1" Column="1" />
+      <File FileName="Calc/Node/PositiveNode.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
