@@ -40,12 +40,15 @@ namespace Calc
 			GetToken ();
 			return ParseExpression ();
 		}
-
+		//式をパースする。
 		private BaseNode ParseExpression ()
 		{
+			//一番上にくるノードから(評価が一番遅いのから)
 			return ParseAdditiveExpression ();
 		}
 
+		//足し算引き算をパースする。
+		//電卓の中では評価が一番後。
 		private BaseNode ParseAdditiveExpression ()
 		{
 			BaseNode node = ParseMultiplicativeExpression ();
@@ -79,7 +82,8 @@ namespace Calc
 			}
 			return node;
 		}
-
+		//単項演算子の処理。
+		//単項演算子は電卓の場合、具体的には-と+。
 		private BaseNode ParseUnaryExpression ()
 		{
 			BaseNode node = null;
@@ -111,16 +115,21 @@ namespace Calc
 			return node;
 		}
 
+		//一番最初に評価される部分。
+		//電卓の場合、ただの数値とか。
 		private BaseNode ParseFirst ()
 		{
 			BaseNode node = null;
+			
 			switch (tokenType) {
 			case TokenType.Number:
 				node = new NumberNode ((float)lex.Value);
 				GetToken ();
 				break;
+			//開き括弧
 			case TokenType.OpenParen:
 				GetToken ();
+				//括弧の中を優先的に処理する。
 				node = ParseParentheses ();
 				break;
 			default:
@@ -128,10 +137,12 @@ namespace Calc
 			}
 			return node;
 		}
-
+		//括弧の中を先に処理する。
 		private BaseNode ParseParentheses ()
 		{
+			//一番上のメソッドを呼ぶ。
 			BaseNode node = ParseExpression ();
+			//次は閉じ括弧になっているはず。
 			if (tokenType != TokenType.CloseParen) {
 				throw new Exception ("Not Close Paren found");
 			}

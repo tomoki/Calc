@@ -7,6 +7,7 @@ namespace Calc
 	{
 		public static void Main (string[] args)
 		{
+			//インタプリタを作る。
 			Parser parser = new Parser ();
 			while (true) {
 				Console.Write ("Calc > ");
@@ -15,6 +16,7 @@ namespace Calc
 				try {
 					BaseNode parsed = parser.Parse (lex);
 					if (parsed != null) {
+						//構文木を出力
 						parsed.print (0);
 						BaseNode result = parsed.eval ();
 						Console.WriteLine (string.Format (" => {0}", result));
