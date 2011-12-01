@@ -33,6 +33,7 @@ namespace Calc.Node
 
 		public override void print (int depth)
 		{
+			
 			Console.WriteLine ("[PlusNode]");
 			Console.Write ("|" + (new String ('|', depth)) + "|-");
 			Left.print (depth + 1);

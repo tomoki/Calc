@@ -7,6 +7,7 @@ namespace Calc
 	 * パーサクラス
 	 * 外から使うときは、Parse(Lexer lex)を呼び出すと構文木をくれる。
 	 * 再帰下降パーサを実装してある。
+	 * これを理解するには、実際に数式を紙の上でパースしてみるといい。
 	 */
 	public class Parser
 	{
@@ -48,7 +49,7 @@ namespace Calc
 		}
 
 		//足し算引き算をパースする。
-		//電卓の中では評価が一番後。
+		//電卓の中では評価が一番後
 		private BaseNode ParseAdditiveExpression ()
 		{
 			BaseNode node = ParseMultiplicativeExpression ();
@@ -66,6 +67,7 @@ namespace Calc
 			return node;
 		}
 
+		//掛け算割り算をパースする。
 		private BaseNode ParseMultiplicativeExpression ()
 		{
 			BaseNode node = ParseUnaryExpression ();
@@ -87,22 +89,31 @@ namespace Calc
 		private BaseNode ParseUnaryExpression ()
 		{
 			BaseNode node = null;
+			//単項演算子かどうかで場合分けする
 			switch (tokenType) {
 			case TokenType.Plus:
 			case TokenType.Minus:
+				//単項演算子ならParseUnaryExpression2を呼ぶ
 				node = ParseUnaryExpression2 ();
 				break;
 			default:
+				//単項演算子がないなら、ParseFirstを呼ぶ
 				node = ParseFirst ();
 				break;
 			}
 			return node;
 		}
-
+		
+		//一番上に単項演算子がある場合に呼ばれる。
 		private BaseNode ParseUnaryExpression2 ()
 		{
+			/*
+			 * トークンタイプを保存しておく。
+			 * 次のトークンを呼んでしまうの前のを上書きしてしまうから。
+			 */
 			TokenType type = tokenType;
 			GetToken ();
+			//単項演算子の対象をパースする。
 			BaseNode node = ParseUnaryExpression ();
 			switch (type) {
 			case TokenType.Plus:
